@@ -1,0 +1,41 @@
+/* Containers */
+.container-header,
+.container-body,
+.container-cards {
+  border: 3px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px;
+}
+
+.container-header {
+  background-color: #3c3ff1;
+  color-text: #fff;
+}
+
+/* Opções */
+.options {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.options li {
+  margin-bottom: 10px;
+}
+
+.options button,
+.container-cards button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #000000;
+  cursor: pointer;
+}
+
+.options button:hover,
+.container-cards button:hover {
+  background-color: #a5a4a4;
+}
