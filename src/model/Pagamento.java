@@ -15,27 +15,21 @@ public class Pagamento {
     private String idExterno;
 
 
-    public Pagamento(Cliente cliente, String idExterno, TipoPagamento tipo, double valor) {
-        if (valor <= 0){
-            throw new IllegalArgumentException("O valor não pode igual a 0 ou negativo !");
+    public Pagamento(Cliente cliente, String idExterno, TipoPagamento tipo, BigDecimal valor) {
+
+        //verificar se o valor é null
+        Objects.requireNonNull(valor, "O valor não pode ser nulo!");
+        //verificar se o valor é menor que ou igual a 0
+        if (valor.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("O valor deve ser maior que zero!");
         }
 
-        //verifica se o atributo do objeto é null , se for null ele lança um NullPointerException com a mensagem "O cliente não pode ser nulo!"
-        this.cliente = Objects.requireNonNull(cliente, "O cliente não pode ser nulo !");
-
-        this.tipo = Objects.requireNonNull(tipo, "O tipo de pagamento não pode ser nulo !");
-
+        this.cliente = Objects.requireNonNull(cliente, "O cliente não pode ser nulo!");
+        this.tipo = Objects.requireNonNull(tipo, "O tipo de pagamento não pode ser nulo!");
         this.status = StatusPagamento.PENDENTE;
-
-        // Geramos um ID aleatório positivo entre 1 e 1.000.000
-        this.id = ThreadLocalRandom.current().nextLong(1,1_000_000L);
-
-        this.tipo = tipo;
-
-        this.idExterno = null;
-
-        this.valor = BigDecimal.valueOf(valor);
-
+        this.id = ThreadLocalRandom.current().nextLong(1, 1_000_000L);
+        this.idExterno = idExterno;
+        this.valor = valor;
     }
 
     //Aprova pagamentos
@@ -46,9 +40,9 @@ public class Pagamento {
         this.status = StatusPagamento.APROVADO;
     }
 
-    public void cancelar(){
-        if (this.status == StatusPagamento.APROVADO){
-            throw new IllegalStateException("Pagamentos já Aprovadosão pode ser cancelado diretamente.");
+    public void cancelar() {
+        if (this.status != StatusPagamento.PENDENTE) {
+            throw new IllegalStateException("Apenas pagamentos PENDENTES podem ser cancelados!");
         }
         this.status = StatusPagamento.CANCELADO;
     }

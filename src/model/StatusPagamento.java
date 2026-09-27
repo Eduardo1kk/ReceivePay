@@ -1,9 +1,9 @@
 package model;
 
 public enum StatusPagamento {
-    APROVADO(01),
-    CANCELADO( 02),
-    PENDENTE(03);
+    APROVADO(1),
+    CANCELADO( 2),
+    PENDENTE(3);
 
     StatusPagamento( int tipo) {
         this.tipo = tipo;

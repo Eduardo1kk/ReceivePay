@@ -1,28 +1,40 @@
 package model;
 
+import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Cliente {
 
     private String nome;
     private Long id;
-    private String gmail;
+    private String email;
     private String cpf;
 
 
-    public Cliente(String cpf, String gmail, String nome) {
+    public Cliente(String cpf, String email, String nome) {
 
         //verificar se foi passado algum valor nulo , esse metodo "isBlank()" -> bloqueia a passagem de espaços
-        if (gmail == null || gmail.isBlank() || nome == null || nome.isBlank()) {
-            throw new IllegalArgumentException("Não pode cadastrar clientes sem nome ou sem gmail!");
+        if (nome == null || nome.isBlank() || email == null || email.isBlank() || cpf == null || cpf.isBlank()) {
+            throw new IllegalArgumentException("Nome, email e CPF são obrigatórios!");
         }
 
         // Geramos um ID aleatório positivo entre 1 e 1.000.000
         this.id = ThreadLocalRandom.current().nextLong(1, 1_000_000L);
-
         this.cpf = cpf;
-        this.gmail = gmail;
+        this.email = email;
         this.nome = nome;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Cliente cliente = (Cliente) o;
+        return Objects.equals(id, cliente.id) && Objects.equals(cpf, cliente.cpf);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, cpf);
     }
 
     @Override
@@ -31,7 +43,7 @@ public class Cliente {
                 " || CPF= " + cpf +
                 " || Nome= " + nome  +
                 " || id= " + id +
-                " || gmail: " + gmail ;
+                " || gmail: " + email ;
     }
 
     public String getCpf() {
@@ -42,12 +54,12 @@ public class Cliente {
         this.cpf = cpf;
     }
 
-    public String getGmail() {
-        return gmail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setGmail(String gmail) {
-        this.gmail = gmail;
+    public void setEmail(String gmail) {
+        this.email = gmail;
     }
 
     public Long getId() {
