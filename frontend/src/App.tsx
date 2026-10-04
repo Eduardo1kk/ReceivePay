@@ -10,7 +10,17 @@ function App() {
 
   return (
 <>
+ {/* barra de navegação*/}
 
+      <nav className="navbar">
+        <ul>
+          <li><a href="#">Início</a></li>
+          <li><a href="#">Transferência</a></li>
+          <li><a href="#">Extrato</a></li>
+        </ul>
+      </nav>
+
+{/* Header saldo*/}
 
     <div className="container-header">
       <h1>Saldo: {saldo}</h1>
@@ -23,7 +33,7 @@ function App() {
     </div>
 
 
-
+{/* Opções*/}
     <div className="container-body">
       <ul className="options">
         <li><button> Realizar Transferência </button></li>
@@ -36,8 +46,16 @@ function App() {
       <button> Trocar de Cartão </button>
     </div>
 
+{/* Seções*/}
+    <section className="secao-conteudos">
+
+      <div className="container-conteudos">
+
+      </div>
+    </section>
+
 </>  
-  );
+  )
 }
 
 export default App;
