@@ -23,7 +23,7 @@ public class PagamentoRepository {
 
         List<Pagamento> pagamentoList = new ArrayList<>();
 
-        for (Pagamento p : pagamentoList){
+        for (Pagamento p : pagamentos){
             if (p.getId().toString().contains(resultado)){
                 pagamentoList.add(p);
             }

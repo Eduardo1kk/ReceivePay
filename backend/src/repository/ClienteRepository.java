@@ -25,7 +25,7 @@ public class ClienteRepository {
 
         List<Cliente> clienteList = new ArrayList<>();
 
-        for (Cliente p : clienteList){
+        for (Cliente p : clientes){
             if (p.getId().toString().contains(resultado)){
                 clienteList.add(p);
             }
@@ -39,7 +39,7 @@ public class ClienteRepository {
 
         List<Cliente> clienteList = new ArrayList<>();
 
-        for (Cliente p : clienteList){
+        for (Cliente p : clientes){
             if (p.getCpf().contains(resposta)){
                 clienteList.add(p);
             }

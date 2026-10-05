@@ -15,7 +15,7 @@ public class Pagamento {
     private String idExterno;
 
 
-    public Pagamento(Cliente cliente, String idExterno, TipoPagamento tipo, BigDecimal valor) {
+    public Pagamento(Cliente cliente, TipoPagamento tipo, BigDecimal valor) {
 
         //verificar se o valor é null
         Objects.requireNonNull(valor, "O valor não pode ser nulo!");
@@ -28,7 +28,6 @@ public class Pagamento {
         this.tipo = Objects.requireNonNull(tipo, "O tipo de pagamento não pode ser nulo!");
         this.status = StatusPagamento.PENDENTE;
         this.id = ThreadLocalRandom.current().nextLong(1, 1_000_000L);
-        this.idExterno = idExterno;
         this.valor = valor;
     }
 
@@ -77,39 +76,15 @@ public class Pagamento {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getIdExterno() {
-        return idExterno;
-    }
-
-    public void setIdExterno(String idExterno) {
-        this.idExterno = idExterno;
-    }
-
     public StatusPagamento getStatus() {
         return status;
-    }
-
-    public void setStatus(StatusPagamento status) {
-        this.status = status;
     }
 
     public TipoPagamento getTipo() {
         return tipo;
     }
 
-    public void setTipo(TipoPagamento tipo) {
-        this.tipo = tipo;
-    }
-
     public BigDecimal getValor() {
         return valor;
-    }
-
-    public void setValor(BigDecimal valor) {
-        this.valor = valor;
     }
 }
