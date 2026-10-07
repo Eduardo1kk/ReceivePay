@@ -35,30 +35,6 @@ public class ClienteService {
         String primeirosNove = cpf.substring(0, 9);
 
 
-
-        int soma = 0;
-        for (int i = 0; i < primeirosNove.length(); i++) {
-
-
-            int digito = Character.getNumericValue(primeirosNove.charAt(i));
-            int peso = 10 - i;
-
-            int valor = peso * digito;
-
-
-            soma = soma + valor;
-
-            int primeiroDigito;
-
-            if (resto < 2) {
-                resto = 1;
-            } else {
-
-                resto -= 11;
-            }
-
-        }
-
             return true;
     }
 
