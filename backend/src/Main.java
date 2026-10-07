@@ -15,12 +15,10 @@ public class Main {
 
         System.out.println("ID Interno Gerado: " + pagamento.getId());
         System.out.println("Status Inicial: " + pagamento.getStatus()); // Esperado: PENDENTE
-        System.out.println("ID Externo Inicial: " + pagamento.getIdExterno()); // Esperado: null
 
         System.out.println("\n--- 3. Simulando a resposta do banco (Preenchendo o idExterno) ---");
         // O banco processou e devolveu a chave/ID deles
         pagamento.setIdExterno("PIX-BANCO-987654321");
-        System.out.println("ID Externo Atualizado: " + pagamento.getIdExterno());
 
         System.out.println("\n--- 4. Aprovando o Pagamento ---");
         // Usando o método de negócio para mudar o status
