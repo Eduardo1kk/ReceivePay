@@ -28,3 +28,7 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+# Maven e Java
+backend/target/
+*.class
