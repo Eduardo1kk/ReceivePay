@@ -3,7 +3,7 @@ package dto;
 import model.Pagamento;
 import model.StatusPagamento;
 
-import java.math.BigDecimal;
+import java.math.BigDecimal; // importando o BIgdecimal
 
 public class PagamentoResponseDTO {
 

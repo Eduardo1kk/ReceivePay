@@ -1,55 +1,38 @@
+
 package service;
 
 import model.Cliente;
 import repository.ClienteRepository;
 
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Objects;
 
+@Service
 public class ClienteService {
 
-//    private boolean isValidar(String cpf){
-//
-//        if (cpf == null || cpf.isBlank()){
-//            return false;
-//        }
-//
-//        //Ele remove tudo que é '.'
-//        cpf = cpf.replace(".","");
-//        cpf = cpf.replace("-","");
-//
-//        int n = cpf.length();
-//
-//        if (n != 11){
-//            return false;
-//        }
-//
-//        //percorre cada posição do CPF , pega os caracteres e verifica de é um dígito
-//        for (int i = 0; i < cpf.length(); i++) {
-//            if (!Character.isDigit(cpf.charAt(i))) {
-//                return false;
-//            }
-//        }
-//        // 1. Pega apenas os 9 primeiros dígitos
-//        String primeirosNove = cpf.substring(0, 9);
-//
-//
-//            return true;
-//    }
+    private final ClienteRepository clienteRepository;
 
-    ClienteRepository clienteRepository = new ClienteRepository();
+    public ClienteService(ClienteRepository clienteRepository) {
+        this.clienteRepository = clienteRepository;
+    }
 
-//validação de cliente para poder adicionar
-    public void adicionarCliente(Cliente c){
+    // Validação de cliente para poder adicionar
+    public void adicionarCliente(Cliente c) {
 
-        Objects.requireNonNull(c,"O cliente não pode ser null");
+        Objects.requireNonNull(c, "O cliente não pode ser null");
 
-       List<Cliente> a = clienteRepository.buscaPorCPF(c.getCpf());
+        List<Cliente> clientesEncontrados =
+                clienteRepository.buscaPorCPF(c.getCpf());
 
-       //verifica se a lista ta vazia
-        if (!a.isEmpty()){
-            throw new IllegalArgumentException("Já existe um cliente cadastrado com este CPF!");
+        // Verifica se a lista está vazia
+        if (!clientesEncontrados.isEmpty()) {
+            throw new IllegalArgumentException(
+                    "Já existe um cliente cadastrado com este CPF!"
+            );
         }
+
         clienteRepository.adiciona(c);
     }
 }

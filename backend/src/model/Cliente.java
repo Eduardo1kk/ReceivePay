@@ -1,3 +1,4 @@
+
 package model;
 
 import java.util.Objects;
@@ -10,11 +11,12 @@ public class Cliente {
     private String email;
     private String cpf;
 
-
     public Cliente(String cpf, String email, String nome) {
 
-        //verificar se foi passado algum valor nulo , esse metodo "isBlank()" -> bloqueia a passagem de espaços
-        if (nome == null || nome.isBlank() || email == null || email.isBlank() || cpf == null || cpf.isBlank()) {
+        //verificar se foi passado algum valor nulo, esse metodo bloqueia espaços / troquei por metodo trim
+        if (nome == null || nome.trim().isEmpty()
+                || email == null || email.trim().isEmpty()
+                || cpf == null || cpf.trim().isEmpty()) {
             throw new IllegalArgumentException("Nome, email e CPF são obrigatórios!");
         }
 
@@ -41,9 +43,9 @@ public class Cliente {
     public String toString() {
         return "Cliente: " + nome +
                 " || CPF= " + cpf +
-                " || Nome= " + nome  +
+                " || Nome= " + nome +
                 " || id= " + id +
-                " || gmail: " + email ;
+                " || gmail: " + email;
     }
 
     public String getCpf() {
